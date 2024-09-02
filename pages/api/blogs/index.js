@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const blogs = await Blog.find({}); // Fetch all blogs
+        const blogs = await Blog.find({});
         res.status(200).json({ success: true, data: blogs });
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
         const imagePaths = Object.values(files)
           .map((file) => {
             if (Array.isArray(file)) {
-              return file.map((f) => f.filepath); // Handle multiple files
+              return file.map((f) => f.filepath);
             }
             return file.filepath;
           })
@@ -75,8 +75,44 @@ export default async function handler(req, res) {
       });
       break;
 
+    case "DELETE":
+      try {
+        // Manually parse the request body
+        const chunks = [];
+        req.on("data", (chunk) => {
+          chunks.push(chunk);
+        });
+
+        req.on("end", async () => {
+          const body = JSON.parse(Buffer.concat(chunks).toString());
+          const { id } = body;
+
+          if (!id) {
+            return res
+              .status(400)
+              .json({ success: false, error: "ID is required" });
+          }
+
+          console.log(id);
+          const deletedService = await Blog.findByIdAndDelete(id);
+          if (!deletedService) {
+            return res
+              .status(404)
+              .json({ success: false, error: "Blog not found" });
+          }
+
+          res.status(200).json({ success: true, data: deletedService });
+        });
+      } catch (error) {
+        console.error("Error deleting blog:", error);
+        res
+          .status(500)
+          .json({ success: false, error: "Internal Server Error" });
+      }
+      break;
+
     default:
-      res.status(400).json({ success: false });
+      res.status(400).json({ success: false, error: "Invalid request method" });
       break;
   }
 }
