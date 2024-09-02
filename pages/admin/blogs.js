@@ -25,6 +25,7 @@ const BlogForm = () => {
   const [desc, setDesc] = useState("");
   const [images, setImages] = useState([]);
   const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [Blogs, setBlogs] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,6 +63,54 @@ const BlogForm = () => {
 
   const handleImageChange = (e) => {
     setImages(Array.from(e.target.files)); // Use Array.from to ensure the files are in an array
+  };
+  useEffect(() => {
+    fetchForms();
+  }, []);
+
+  const fetchForms = async () => {
+    try {
+      const res = await fetch("/api/blogs");
+      const data = await res.json();
+      console.log(data);
+      setBlogs(data.data);
+    } catch (error) {
+      setBlogs(["failed to fetch"]);
+    }
+  };
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [serviceToDelete, setServiceToDelete] = useState(null);
+
+  const handleDeleteClick = (id) => {
+    setServiceToDelete(id);
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!serviceToDelete) return;
+    console.log(serviceToDelete);
+
+    try {
+      const response = await fetch("/api/blogs", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: serviceToDelete }),
+      });
+
+      const responseData = await response.json();
+      if (responseData.success) {
+        setBlogs(Blogs.filter((service) => service._id !== serviceToDelete));
+        setServiceToDelete(null);
+        setShowConfirm(false);
+      } else {
+        alert("Failed to delete the blog. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -180,6 +229,72 @@ const BlogForm = () => {
               )}
             </div>
           </form>
+        </div>
+      </div>
+
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 className="section-title bg-white text-center text-primary px-3">
+              TOTAL BLOGS
+            </h6>
+            <h1 className="mb-5">TOTAL ADDED BLOGS</h1>
+          </div>
+          {Blogs.map((elem) => (
+            <div className=" wow fadeInUp" data-wow-delay="0.1s" key={elem._id}>
+              <div className="admin-service service-item  pt-3 h-100">
+                <div className="p-4">
+                  <h5 className="mb-3">{elem.title}</h5>
+                </div>
+                <div className="del-button">
+                  <button
+                    className="btn btn-danger delete-button"
+                    onClick={() => handleDeleteClick(elem._id)}
+                  >
+                    DELETE
+                  </button>
+                </div>
+              </div>
+              {showConfirm && <div className="blur-overlay"></div>}
+              {showConfirm && (
+                <div
+                  className="fixed-top d-flex justify-content-center align-items-center"
+                  data-wow-delay="0.3s"
+                  style={{ height: "100vh", zIndex: 1050 }}
+                >
+                  <div
+                    className="alert alert-warning alert-dismissible fade show shadow-lg rounded"
+                    role="alert"
+                    style={{ maxWidth: "500px", width: "90%" }}
+                  >
+                    <strong>Are you sure?</strong> You want to delete this Blog.
+                    <button
+                      type="button"
+                      className="btn-close"
+                      onClick={() => setShowConfirm(false)}
+                      aria-label="Close"
+                    ></button>
+                    <div className="mt-3">
+                      <button
+                        type="button"
+                        className="btn btn-secondary me-2"
+                        onClick={() => setShowConfirm(false)}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={confirmDelete}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
