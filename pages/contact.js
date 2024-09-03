@@ -160,7 +160,7 @@ export default function Home() {
                 </div>
                 <div className="ms-3">
                   <h5 className="text-primary">Email</h5>
-                  <p className="mb-0">info@Profit-Pulse.net</p>
+                  <p className="mb-0">info@profitpulsepk.com</p>
                 </div>
               </div>
             </div>
