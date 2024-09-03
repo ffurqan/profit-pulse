@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/profit-pulse", {
+mongoose.connect("mongodb+srv://doadmin:v84KSy2J9j3t016F@profit-pulse-db-ac4cb8e0.mongo.ondigitalocean.com/admin?replicaSet=profit-pulse-db&tls=true&authSource=admin", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
