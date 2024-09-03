@@ -38,6 +38,9 @@ const Footer = () => {
               <a className="btn btn-link" href="contact">
                 Contact Us
               </a>
+              <a className="btn btn-link" href="blogs">
+                Blogs
+              </a>
             </div>
             <div className="col-lg-3 col-md-6">
               <h4 className="text-white mb-3">Contact</h4>
