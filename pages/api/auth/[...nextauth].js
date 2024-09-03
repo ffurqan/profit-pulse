@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import dbConnect from "@/lib/mongodb";
+import connectMongo from "@/lib/mongodb";
 import User from "@/Models/User";
 
 export default NextAuth({
@@ -17,7 +17,7 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        await dbConnect();
+        await connectMongo();
 
         const user = await User.findOne({ username: credentials.username });
 
@@ -44,7 +44,7 @@ export default NextAuth({
   callbacks: {
     async signIn({ user, account, profile }) {
       if (account.provider === "google") {
-        await dbConnect();
+        await connectMongo();
         const existingUser = await User.findOne({ email: profile.email });
         if (!existingUser) {
           const newUser = new User({
