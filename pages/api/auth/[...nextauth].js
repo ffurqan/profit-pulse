@@ -5,6 +5,12 @@ import connectMongo from "@/lib/mongodb";
 import User from "@/Models/User";
 
 export default NextAuth({
+  session: {
+  strategy: "jwt",
+  cookie: {
+    domain: 'profitpulsepk.com',
+  },
+},
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -67,6 +73,7 @@ export default NextAuth({
       return token;
     },
     async session({ session, token }) {
+      
       // Add user ID, email, and name to the session object
       session.user.id = token.id;
       session.user.email = token.email;
