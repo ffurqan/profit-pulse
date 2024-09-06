@@ -47,16 +47,10 @@ export default function Home() {
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&amp;family=Nunito:wght@600;700;800&amp;display=swap"
         rel="stylesheet"
         crossOrigin="true"
-      />
-         
+      />      
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
       <link
         href="cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
         rel="stylesheet"
@@ -495,26 +489,17 @@ export default function Home() {
         </div>
       </div>
 
-      <Footer />
-        
+      <Footer />        
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script>
   new WOW().init();
 </script>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
-<script src="main.js"></script>
-
+  <script src="main.js"></script>
       <Script src="/js/jquery.min.js" strategy="beforeInteractive" />
       <Script src="/js/bootstrap.min.js" strategy="lazyOnload" />
       <Script src="/lib/wow/wow.min.js" strategy="lazyOnload" />
