@@ -1,3 +1,4 @@
+import WOW from 'wowjs';
 (function ($) {
   "use strict";
 
