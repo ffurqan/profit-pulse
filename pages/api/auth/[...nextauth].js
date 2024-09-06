@@ -9,6 +9,7 @@ export default NextAuth({
   strategy: "jwt",
   cookie: {
     domain: 'profitpulsepk.com',
+    secure: true,
   },
 },
   providers: [
