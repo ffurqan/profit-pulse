@@ -48,6 +48,15 @@ export default function Home() {
         rel="stylesheet"
         crossOrigin="true"
       />
+           <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  
+  <!-- WOW.js CSS (Optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
       <link
         href="cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
         rel="stylesheet"
