@@ -56,7 +56,7 @@ export default function Home() {
   
   <!-- WOW.js CSS (Optional) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-</head>
+
       <link
         href="cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
         rel="stylesheet"
