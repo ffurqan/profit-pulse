@@ -64,7 +64,7 @@ export default function Register() {
   
   <!-- WOW.js CSS (Optional) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-</head>
+
       <link
         href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&amp;family=Nunito:wght@600;700;800&amp;display=swap"
         rel="stylesheet"
